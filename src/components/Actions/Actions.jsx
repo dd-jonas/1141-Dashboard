@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ActionButton } from "./ActionButton";
 
 export const Actions = () => {
@@ -10,6 +11,11 @@ export const Actions = () => {
       <ActionButton name="camera" noModal>
         <i className="bi bi-camera-video"></i>
       </ActionButton>
+      <button className="actions__btn actions__btn--light">
+        <Link to="/light">
+          <i className="bi bi-lamp"></i>
+        </Link>
+      </button>
     </div>
   );
 };

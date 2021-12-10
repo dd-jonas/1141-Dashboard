@@ -371,8 +371,9 @@ main {
 }
 
 .interactive__container {
+  height: 100vh;
   display: grid;
-  grid-template-rows: 60px 100px auto 80px;
+  grid-template-rows: 60px 100px 1fr 80px;
   padding: 0 20px;
 }
 
@@ -391,7 +392,14 @@ button:active {
   display: flex;
   flex-direction: column;
   background-color: #1f2a40;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+.client__container::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.client__container::-webkit-scrollbar-thumb {
+  background-color: #5959ef;
+  border-radius: 0.25rem;
 }
 .client__header {
   display: grid;
@@ -491,7 +499,7 @@ button:active {
 
 .actions__container {
   display: grid;
-  grid-template-columns: auto auto auto auto 100px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 100px 100px;
   align-items: center;
   gap: 10px;
 }
@@ -517,10 +525,17 @@ button:active {
 }
 .actions__btn--camera {
   background-color: #5959ef;
-  color: white;
+}
+.actions__btn--light {
+  background-color: #ffed48;
 }
 .actions__btn--camera i {
   font-size: 50px;
+  color: white;
+}
+.actions__btn--light i {
+  font-size: 50px;
+  color: #222128;
 }
 
 .detail__container {
@@ -529,6 +544,7 @@ button:active {
   border-radius: 5px;
   margin: 10px 0;
   padding: 0 20px;
+  overflow-y: hidden;
 }
 .detail__actions {
   display: grid;
@@ -691,6 +707,129 @@ button:active {
   width: 60px;
   border-radius: 0 5px 5px 0;
   border-left: none;
+}
+
+.light {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  column-gap: 4rem;
+}
+
+.light > * {
+  margin: 2rem 0;
+}
+
+.light h2 {
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid white;
+}
+
+.light__cartesian {
+  box-shadow: 4px 4px 15px #0004, 2px 3px 3px #0003;
+}
+
+.light__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.light__buttons > button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  background-color: #5959ef;
+  border: none;
+  outline: none;
+}
+
+.light__output {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.light__output::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.light__output::-webkit-scrollbar-thumb {
+  background-color: #5959ef;
+  border-radius: 0.25rem;
+}
+
+/* Mafs.js styles */
+.MafsWrapper,
+.MafsView {
+  height: 100%;
+}
+
+.MafsView {
+  display: block;
+  background: var(--mafs-bg);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+
+  --mafs-bg: black;
+  --mafs-fg: white;
+
+  --mafs-origin-color: var(--mafs-fg);
+  --mafs-line-color: #555;
+  --grid-line-subdivision-color: #222;
+
+  --mafs-red: #f11d0e;
+  --mafs-orange: #f14e0e;
+  --mafs-yellow: #ffe44a;
+  --mafs-green: #15e272;
+  --mafs-blue: #58a6ff;
+  --mafs-indigo: #7c58ff;
+  --mafs-violet: #ae58ff;
+  --mafs-pink: #ee00ab;
+}
+
+.MafsView text {
+  fill: var(--mafs-fg);
+  cursor: default;
+}
+
+.MafsView path {
+  stroke: var(--mafs-fg);
+}
+
+.MafsWrapper,
+.MafsView .draggable-hitbox {
+  touch-action: none;
+}
+
+.MafsView .draggable {
+  transition: r 0.2s ease, stroke-width 0.2s ease;
+  stroke-width: 18px;
+  cursor: grab;
+  outline: 0 !important;
+  touch-action: none;
+
+  color: hsl(0, 100%, 47%);
+}
+
+.MafsView .draggable:active {
+  cursor: grabbing;
+}
+
+.MafsView .draggable:focus,
+.MafsView circle.draggable:hover,
+.MafsView circle.draggable.dragging {
+  r: 15px;
+  stroke-width: 0;
+}
+
+.MafsView .shadow {
+  paint-order: stroke;
+  stroke-width: 3px;
+  stroke: var(--mafs-bg);
+  stroke-opacity: 0.75;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,5 +1,6 @@
-import { Route, Switch } from "react-router-dom";
-import { ClientDetail } from "../../pages/templates/ClientDetail";
+import { Route, Switch } from 'react-router-dom';
+import { ClientDetail } from '../../pages/templates/ClientDetail';
+import { LightController } from '../Light/LightController';
 
 export const Detail = ({ data }) => {
   return (
@@ -11,6 +12,10 @@ export const Detail = ({ data }) => {
             <ClientDetail data={client} />
           </Route>
         ))}
+        {/* Light controller */}
+        <Route path="/light">
+          <LightController />
+        </Route>
       </Switch>
     </div>
   );
