@@ -4,8 +4,6 @@ export const useMutation = (url, options = {}) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   
-  console.log(error)
-  
   const mutate = async (data, onSuccess) => {
     if (loading) return;
     setLoading(true);

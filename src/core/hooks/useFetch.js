@@ -29,5 +29,5 @@ export const useFetch = (url, options) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
-  return { data: response, error, loading };
+  return { data: response, error, loading, updateData: setResponse };
 };

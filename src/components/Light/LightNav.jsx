@@ -1,4 +1,4 @@
-const names = ['Jane', 'Mary'];
+import { names } from './LightController';
 
 export const LightNav = ({ active, setActive }) => {
   return (
@@ -6,9 +6,9 @@ export const LightNav = ({ active, setActive }) => {
       {names.map((name, i) => (
         <button
           key={i}
-          onClick={() => setActive(i)}
+          onClick={() => setActive(name)}
           className={`light__nav-item ${
-            active === i ? 'light__nav-item--active' : ''
+            active === name ? 'light__nav-item--active' : ''
           }`}
         >
           {name}

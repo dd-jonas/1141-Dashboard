@@ -1,21 +1,30 @@
 import { CartesianCoordinates, Mafs, useMovablePoints } from '@dd-jonas/mafs';
+import { useEffect } from 'react';
 import { useMutation } from '../../core/hooks/useMutation.js';
 
 import { BezierCurve } from './BezierCurve.jsx';
+import { apiBaseUrl } from './LightController.jsx';
 import { Room } from './Room.jsx';
 
-export const LightPanel = ({ active, initialPoints }) => {
+export const LightPanel = ({ active, initialPoints, onSave }) => {
   const { points, elements, addPoints, setPoints, deletePoints } =
     useMovablePoints(initialPoints);
-  const mutation = useMutation(`.../paths/${active}`, {
+  const mutation = useMutation(`${apiBaseUrl}/paths/${active}`, {
     method: 'PUT',
   });
+
+  useEffect(() => {
+    if (JSON.stringify(points) !== JSON.stringify(initialPoints)) {
+      setPoints(...initialPoints);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialPoints]);
 
   const lengthen = () => addPoints([1, 3.25], [2, 3.25]);
   const shorten = () => points.length >= 3 && deletePoints(2);
   const reverse = () => setPoints(...[...points].reverse());
   const reset = () => setPoints(...initialPoints);
-  const save = () => mutation.mutate(points);
+  const save = () => mutation.mutate({ points }, () => onSave(points));
 
   return (
     <>
